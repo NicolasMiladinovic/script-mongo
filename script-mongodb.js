@@ -8,11 +8,13 @@ accounts.forEach(account => {
   let i = template_parameters.indexOf(x)
 
   account.priceIsVisible = true
-  if (x.value === "none") {
+  if (x && x.value === "none") {
     account.priceIsVisible = false
   }
 
-  let o = account.template_parameters.splice(i, 1)
+  if(x !== undefined) {
+    let o = account.template_parameters.splice(i, 1)
+  }
 
   db.accounts.updateOne({ _id: accountId }, { $set: account })
 });
